@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>One Way Food | Fast Food Grombalia</title>
-<meta name="description" content="One Way Food fast-food à Grombalia : sandwich, pizza, makloub. Sur place et à emporter.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -45,6 +45,7 @@ text-decoration:none;
 width:100%;
 height:85vh;
 object-fit:cover;
+cursor:pointer;
 }
 
 /* HERO */
@@ -67,6 +68,8 @@ margin-top:15px;
 font-size:16px;
 cursor:pointer;
 border-radius:6px;
+color:black;
+font-weight:bold;
 }
 
 /* SECTIONS */
@@ -81,7 +84,7 @@ font-size:34px;
 margin-bottom:30px;
 }
 
-/* CARROUSEL VIDEO */
+/* VIDEO */
 
 .video-carousel{
 display:flex;
@@ -99,7 +102,6 @@ max-width:90%;
 display:none;
 width:100%;
 border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
 .video-slide.active{
@@ -146,6 +148,19 @@ max-width:800px;
 border-radius:10px;
 }
 
+/* MAP LINK */
+
+.map a{
+display:inline-block;
+margin-top:15px;
+background:#00d1ff;
+padding:12px 25px;
+border-radius:6px;
+text-decoration:none;
+color:black;
+font-weight:bold;
+}
+
 /* CONTACT */
 
 .contact{
@@ -155,7 +170,6 @@ background:#000;
 .contact a{
 color:#00d1ff;
 text-decoration:none;
-font-weight:bold;
 }
 
 /* FOOTER */
@@ -171,10 +185,7 @@ background:#000;
 
 <body>
 
-<!-- NAVBAR -->
-
 <nav>
-
 <h2>One Way Food</h2>
 
 <div>
@@ -185,31 +196,25 @@ background:#000;
 <a href="#map">Localisation</a>
 <a href="#contact">Contact</a>
 </div>
-
 </nav>
 
-<!-- IMAGE BANNIERE -->
+<!-- IMAGE -->
 
 <div class="top-image">
-<img src="alwi.png.jpg">
+<img id="heroImage" src="alwi.png.jpg">
 </div>
 
 <!-- HERO -->
 
 <div class="hero">
-
 <h1>One Way Food</h1>
-
 <p>Fast Food • Pizza • Sandwich • À emporter</p>
-
 <button class="btn">Commander</button>
-
 </div>
 
 <!-- VIDEOS -->
 
 <section id="videos">
-
 <h2>Nos spécialités en vidéo</h2>
 
 <div class="video-carousel">
@@ -219,15 +224,15 @@ background:#000;
 <div class="video-container">
 
 <video class="video-slide active" autoplay muted loop controls>
-<source src="video1.mp4" type="video/mp4">
+<source src="video1.mp4">
 </video>
 
 <video class="video-slide" autoplay muted loop controls>
-<source src="video2.mp4" type="video/mp4">
+<source src="video2.mp4">
 </video>
 
 <video class="video-slide" autoplay muted loop controls>
-<source src="video3.mp4" type="video/mp4">
+<source src="video3.mp4">
 </video>
 
 </div>
@@ -241,24 +246,18 @@ background:#000;
 <!-- MENU -->
 
 <section id="menu" class="menu">
-
 <h2>Notre Menu</h2>
-
 <img src="menu11.png.jpg">
-
 </section>
 
 <!-- RESTAURANT -->
 
 <section id="gallery">
-
 <h2>Notre Restaurant</h2>
 
 <div class="gallery">
-
 <img src="restaurant1.png.jpg">
 <img src="restaurant123.png.jpg">
-
 </div>
 
 </section>
@@ -266,19 +265,23 @@ background:#000;
 <!-- MAP -->
 
 <section id="map" class="map">
-
 <h2>Notre Localisation</h2>
 
 <p>📍 Grombalia – Route N1</p>
 
 <img src="maps.png">
 
+<br>
+
+<a href="https://www.google.com/maps/place/One+way+food/@36.5902442,10.501662,17z/data=!4m14!1m7!3m6!1s0x12fd5bffb452b00b:0xee6805d67dbd4dbe!2sOne+way+food!8m2!3d36.5902442!4d10.5042369!16s%2Fg%2F11fsy_jnfj!3m5!1s0x12fd5bffb452b00b:0xee6805d67dbd4dbe!8m2!3d36.5902442!4d10.5042369!16s%2Fg%2F11fsy_jnfj?entry=ttu&g_ep=EgoyMDI2MDMxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+Voir sur Google Maps
+</a>
+
 </section>
 
 <!-- CONTACT -->
 
 <section id="contact" class="contact">
-
 <h2>Contact</h2>
 
 <p>📞 Téléphone : 50893251</p>
@@ -291,23 +294,19 @@ Visiter notre page
 </p>
 
 <p>🕒 Ouvert à partir de 09:00</p>
-
 <p>🍔 Repas sur place & vente à emporter</p>
 
 </section>
 
 <footer>
-
 <p>© 2026 One Way Food - Grombalia</p>
-
 </footer>
-
-<!-- SCRIPT CARROUSEL -->
 
 <script>
 
-let index = 0;
+/* VIDEO */
 
+let index = 0;
 const videos = document.querySelectorAll(".video-slide");
 
 function showVideo(i){
@@ -316,16 +315,45 @@ videos[i].classList.add("active");
 }
 
 function nextVideo(){
-index++;
-if(index >= videos.length){index = 0;}
+index = (index + 1) % videos.length;
 showVideo(index);
 }
 
 function prevVideo(){
-index--;
-if(index < 0){index = videos.length - 1;}
+index = (index - 1 + videos.length) % videos.length;
 showVideo(index);
 }
+
+/* 🔥 IMAGE ANIMATION LENTE */
+
+const heroImage = document.getElementById("heroImage");
+
+const images = [
+"alwi.png.jpg",
+"t1.png.jpg",
+"t2.png.jpg",
+"t3.png.jpg"
+];
+
+let i = 0;
+let interval;
+
+heroImage.addEventListener("mouseenter", () => {
+
+interval = setInterval(() => {
+i = (i + 1) % images.length;
+heroImage.src = images[i];
+}, 1200); // 🔥 plus lent
+
+});
+
+heroImage.addEventListener("mouseleave", () => {
+
+clearInterval(interval);
+heroImage.src = "alwi.png.jpg";
+i = 0;
+
+});
 
 </script>
 
